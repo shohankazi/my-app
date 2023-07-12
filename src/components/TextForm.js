@@ -33,10 +33,7 @@ export default function TextForm(props) {
     </div>
         <div className="container my-3">
         <h1>Your text summary</h1>
-        <p>{text.split(" ").length} words {text.length} characters {text.split(".").length-1} Assertive sentence {text.split("?").length-1} interrogative sentence {
-
-            
-        }.</p>
+        <p>{text.split(" ").length} words {text.length} characters {text.split(".").length-1} Assertive sentence {text.split("?").length-1} interrogative sentence .</p>
         <p>{0.008 * text.split(" ").length} Minutes read</p>
         <h2>Preview</h2>
         <p>{text}</p>
