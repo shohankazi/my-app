@@ -28,12 +28,15 @@ export default function TextForm(props) {
         <div className="form-group mb-3">
         <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8"></textarea>
         </div>
-        <button className="btn btn-primary mx-2" onClick={handleUpClick}>Convert to UpperCase</button>
-        <button className="btn btn-primary" onClick={handleDownClick}>Convert to LowerCase</button>
+        <button className="btn btn-outline-primary mx-2" onClick={handleUpClick}>Convert to UpperCase</button>
+        <button className="btn btn-outline-primary" onClick={handleDownClick}>Convert to LowerCase</button>
     </div>
         <div className="container my-3">
         <h1>Your text summary</h1>
-        <p>{text.split(" ").length} words and {text.length} characters</p>
+        <p>{text.split(" ").length} words {text.length} characters {text.split(".").length-1} Assertive sentence {text.split("?").length-1} interrogative sentence {
+
+            
+        }.</p>
         <p>{0.008 * text.split(" ").length} Minutes read</p>
         <h2>Preview</h2>
         <p>{text}</p>
