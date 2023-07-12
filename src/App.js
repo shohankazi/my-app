@@ -9,7 +9,7 @@ function App() {
     <>
     
 <Navbar title = "TextUtils" aboutText = "About TextUtils"/>
-{/* <TextForm heading = "Enter the text to analyze below"/> */}
+<TextForm heading = "Enter the text to analyze below"/>
     <About/>
 </>
   );
