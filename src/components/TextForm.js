@@ -1,47 +1,66 @@
-/*
-    What i also learned today from this video are as written below:
-1. State=condition of any component for eg. textarea component might be empty sometime , sometimes it has letters .
-2. Hooks= A method which helps us to use features of classes in function based component this is because developer like us prefer to use function over classes.
-3. Hooks has this part ---->   const [count,setCount)=useState("Hello Universe"); 
-Here in above hook the value of count is Hello Universe . count is array variable so that we just can't update or change its value like normal variable
+import React, {useState} from 'react'
 
-*/
-import React, { useState } from 'react'
 
 export default function TextForm(props) {
-    const handleUpClick = () =>{
+    const handleUpClick = ()=>{
+        // console.log("Uppercase was clicked: " +  text);
         let newText = text.toUpperCase();
-        setText(newText);
+        setText(newText)
     }
-    const handleDownClick = () =>{
+
+    const handleLoClick = ()=>{ 
         let newText = text.toLowerCase();
-        setText(newText);
+        setText(newText)
     }
-    const handleOnChange = (event) =>{
-        setText(event.target.value);
+
+    const handleClearClick = ()=>{ 
+        let newText = '';
+        setText(newText)
     }
-    const clearHandle = (event) =>{
-        setText(event.target.value = "");
+
+    const handleOnChange = (event)=>{
+        // console.log("On change");
+        setText(event.target.value)
     }
-    const [text,setText] = useState("Enter text here 2")
+
+    // Credits: A
+    const handleCopy = () => {
+        console.log("I am copy");
+        var text = document.getElementById("myBox");
+        text.select();
+        text.setSelectionRange(0, 9999);
+        navigator.clipboard.writeText(text.value);
+    }
+
+    // Credits: Coding Wala
+    const handleExtraSpaces = () => {
+        let newText = text.split(/[ ]+/);
+        setText(newText.join(" "))
+    }
+
+    const [text, setText] = useState(''); 
+    // text = "new text"; // Wrong way to change the state
+    // setText("new text"); // Correct way to change the state
     return (
         <>
-    <div className="container">
-        <h1>{props.heading}</h1>
-        <div className="form-group mb-3">
-        <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8"></textarea>
+        <div className="container" style={{color: props.mode==='dark'?'white':'#042743'}}> 
+            <h1>{props.heading}</h1>
+            <div className="mb-3"> 
+            <textarea className="form-control" value={text} onChange={handleOnChange} style={{backgroundColor: props.mode==='dark'?'grey':'white', color: props.mode==='dark'?'white':'#042743'}} id="myBox" rows="8"></textarea>
+            </div>
+            <button className="btn btn-primary mx-1" onClick={handleUpClick}>Convert to Uppercase</button>
+            <button className="btn btn-primary mx-1" onClick={handleLoClick}>Convert to Lowercase</button>
+            <button className="btn btn-primary mx-1" onClick={handleClearClick}>Clear Text</button>
+            <button className="btn btn-primary mx-1" onClick={handleCopy}>Copy Text</button>
+            <button className="btn btn-primary mx-1" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
         </div>
-        <button className="btn btn-outline-primary mx-2" onClick={handleUpClick}>Convert to UpperCase</button>
-        <button className="btn btn-outline-primary mx-2" onClick={handleDownClick}>Convert to LowerCase</button>
-        <button className="btn btn-outline-primary" onClick={clearHandle}>Clear Text</button>
-    </div>
-        <div className="container my-3">
-        <h1>Your text summary</h1>
-        <p>{text.split(" ").length} words {text.length} characters {text.split(".").length-1} Assertive sentence {text.split("?").length-1} interrogative sentence .</p>
-        <p>{0.008 * text.split(" ").length} Minutes read</p>
-        <h2>Preview</h2>
-        <p>{text}</p>
+        <div className="container my-3" style={{color: props.mode==='dark'?'white':'#042743'}}>
+            <h2>Your text summary</h2>
+            <p>{text.split(" ").length} words and {text.length} characters</p>
+            <p>{0.008 *  text.split(" ").length} Minutes read</p>
+            <h2>Preview</h2>
+            <p>{text.length>0?text:"Enter something in the textbox above to preview it here"}</p>
         </div>
-    </>
-  )
+        </>
+    )
 }
